@@ -1,0 +1,1 @@
+{{ $model->userDetail->name }}

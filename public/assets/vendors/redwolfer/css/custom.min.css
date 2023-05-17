@@ -1,0 +1,85 @@
+.card-rounded {
+    border-radius: 1em;
+}
+
+:root {
+    --rdwf-maranatha-blue: #0067ac;
+    --rdwf-maranatha-aqua: #0099ff;
+}
+
+.bg-maranatha-blue {
+    background-color: var(--rdwf-maranatha-blue) !important;
+}
+
+.bg-maranatha-aqua {
+    background-color: var(--rdwf-maranatha-aqua) !important;
+}
+
+.text-maranatha-blue {
+    color: var(--rdwf-maranatha-blue) !important;
+}
+
+.text-maranatha-aqua {
+    color: var(--rdwf-maranatha-aqua) !important;
+}
+
+.badge-maranatha-blue {
+    background-color: var(--rdwf-maranatha-blue) !important;
+    color: white;
+}
+
+.badge-maranatha-aqua {
+    background-color: var(--rdwf-maranatha-aqua) !important;
+    color: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.font-xs {
+    font-size: .75em !important;
+}
+
+.font-sm {
+    font-size: .9em !important;
+}
+
+/* Hide the default arrow icon */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Add a custom class to remove the arrow icon */
+.no-caret {
+    padding-right: 0.5rem !important;
+    background-image: none !important;
+}
+
+.bg-gradient-maranatha {
+    background-color: #4e73df;
+    background-image: linear-gradient(180deg, var(--rdwf-maranatha-blue) 10%, var(--rdwf-maranatha-aqua) 100%);
+    background-size: cover;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--rdwf-maranatha-blue);
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--rdwf-maranatha-aqua);
+}
