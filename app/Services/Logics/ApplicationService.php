@@ -116,7 +116,6 @@ class ApplicationService
         //  Create application study program
         $application->applicationStudyPrograms()->create([
             'study_programs_id' => $studyProgram->id,
-            'is_accepted'       => false,
             'is_processed'      => false,
         ]);
 

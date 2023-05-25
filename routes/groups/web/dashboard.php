@@ -7,4 +7,10 @@ Route::middleware('auth')->name('dashboard.')->prefix('/dashboard')->group(funct
 
     //  Index
     Route::name('index')->get('/', [DashboardController::class, 'index']);
+
+    //  Chart study program applications
+    Route::name('chart-study-program-applications')->get('/chart/study-program-applications', [DashboardController::class, 'chartStudyProgramApplications']);
+
+    //  Chart accepted study program
+    Route::name('chart-accepted-study-programs')->get('/chart/accepted-study-programs', [DashboardController::class, 'chartAcceptedStudyPrograms']);
 });

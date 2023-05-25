@@ -17,7 +17,7 @@ class CreateApplicationStudyProgramsTable extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('applications_id')->references('id')->on('applications')->onDelete('cascade');
             $table->foreignUuid('study_programs_id')->references('id')->on('study_programs')->onDelete('cascade');
-            $table->boolean('is_accepted');
+            $table->boolean('is_accepted')->nullable();
             $table->boolean('is_processed');
             $table->timestamps();
         });
