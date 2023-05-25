@@ -2,7 +2,7 @@
 @extends('layouts.login')
 
 {{-- Web title --}}
-@section('web-title', 'DPBA Universitas Kristen Maranatha - Dasbor')
+@section('web-title', 'DPBA Universitas Kristen Maranatha - Login')
 
 {{-- Content --}}
 @section('content')

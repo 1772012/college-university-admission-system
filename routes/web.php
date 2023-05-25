@@ -20,3 +20,6 @@ include __DIR__ . '/groups/web/faculties.php';
 
 //  Route group study programs
 include __DIR__ . '/groups/web/study-programs.php';
+
+//  Route group tests
+include __DIR__ . '/groups/web/tests.php';

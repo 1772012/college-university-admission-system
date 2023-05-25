@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Traits\RedirectTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class LoginController extends Controller
 {
+    use RedirectTrait;
+
+    /*
+    |--------------------------------------------------------------------------
+    | View Controllers
+    |--------------------------------------------------------------------------
+    */
+
     /**
      *  Index
      *
@@ -16,26 +25,43 @@ class LoginController extends Controller
      */
     public function index(): View
     {
-        return view('pages.login.index');
+        return $this->renderOrRedirect(function () {
+            return view('pages.login.index');
+        });
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Service Controllers
+    |--------------------------------------------------------------------------
+    */
+
     /**
-     *  Auth
+     * Auth
      *
-     *  @return RedirectResponse
+     * @param LoginRequest $request
+     * @return RedirectResponse
      */
     public function auth(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->only(['email', 'password']);
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->role == 'admin') {
-                return redirect()->route('dashboard.index');
+        return $this->renderOrRedirect(function () use ($request) {
+
+            //  Set credentials
+            $credentials = $request->only(['email', 'password']);
+
+            //  Whether is login
+            if (Auth::attempt($credentials)) {
+                if (Auth::user()->role == 'admin') {
+                    return redirect()->route('dashboard.index');
+                } else {
+                    return back()->with('error-message', 'Anda bukan administrator!');
+                }
+            } else {
+                return back()->with('error-message', 'Username atau password salah!');
             }
-            return back()->with('error-message', 'Anda bukan administrator!');
-        } else {
-            return back()->with('error-message', 'Username atau password salah!');
-        }
+        });
     }
+
 
     /**
      *  Logout
@@ -44,7 +70,13 @@ class LoginController extends Controller
      */
     public function logout(): RedirectResponse
     {
-        Auth::logout();
-        return redirect()->route('login.index');
+        return $this->renderOrRedirect(function () {
+
+            //  Logout
+            Auth::logout();
+
+            //  Return redirect route
+            return redirect()->route('login.index');
+        });
     }
 }
