@@ -19,4 +19,7 @@ Route::middleware('auth')->name('applications.')->prefix('/applications')->group
 
         //  Destroy
         Route::name('destroy')->post('/{application}/destroy', [ApplicationController::class, 'destroy']);
+
+        //  Get study programs
+        Route::name('get-study-programs')->get('/get/study-programs', [ApplicationController::class, 'getStudyPrograms']);
     });

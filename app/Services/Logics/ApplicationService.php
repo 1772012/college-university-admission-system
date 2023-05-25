@@ -121,7 +121,7 @@ class ApplicationService
         ]);
 
         //  Return application
-        return $application;
+        return $application->toArray();
     }
 
     /**

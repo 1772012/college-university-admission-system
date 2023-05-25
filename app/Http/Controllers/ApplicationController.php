@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Faculty;
+use App\Models\StudyProgram;
 use App\Models\User;
 use App\Services\Logics\ApplicationService;
 use App\Traits\DBTransactionTrait;
@@ -43,9 +45,10 @@ class ApplicationController extends Controller
     public function create(User $user): View
     {
         return $this->renderOrRedirect(function () use ($user) {
-            return view('pages.applications.create', [
-                'user'  => $user,
-                'model' => new Application()
+            return view('pages.applications.create.index', [
+                'user'      => $user,
+                'model'     => new Application(),
+                'faculties' => Faculty::all()->pluck('name', 'id')
             ]);
         });
     }
@@ -101,5 +104,23 @@ class ApplicationController extends Controller
             //  Return success response
             return $this->responseSuccess($application, 'Berhasil menghapus pendaftaran.');
         });
+    }
+
+    /**
+     *  Get study programs
+     *
+     *  @param Request $request
+     *  @return JsonResponse
+     */
+    public function getStudyPrograms(Request $request): JsonResponse
+    {
+        //  Get study programs
+        $result = StudyProgram::query()
+            ->where('faculties_id', $request->input('faculty_id'))
+            ->get()
+            ->pluck('name', 'code');
+
+        //  Return response
+        return response()->json($result);
     }
 }

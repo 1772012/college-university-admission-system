@@ -1,17 +1,25 @@
 {{-- Action --}}
-<div class="dropdown show">
+<div>
 
-    <a class="btn btn-circle dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown">
-        <i class="fas fa-cogs"></i>
-    </a>
+    {{-- Create application button --}}
+    @include('pages.users.inc.btn-create-application')
 
-    <div class="dropdown-menu shadow-lg">
+    {{-- Action button group --}}
+    <div class="dropdown d-inline show">
 
-        {{-- Edit user button --}}
-        @include('pages.users.inc.btn-edit-user')
+        <a class="btn btn-circle dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown">
+            <i class="fas fa-cogs"></i>
+        </a>
 
-        {{-- Delete user button --}}
-        @include('pages.users.inc.btn-delete-user')
+        <div class="dropdown-menu shadow-lg">
 
+            {{-- Edit user button --}}
+            @include('pages.users.inc.btn-edit-user')
+
+            {{-- Delete user button --}}
+            @include('pages.users.inc.btn-delete-user')
+
+        </div>
     </div>
 </div>
+
