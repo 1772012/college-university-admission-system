@@ -1,6 +1,9 @@
 {{-- Action --}}
 <div>
 
+    {{-- Grades button --}}
+    @include('pages.users.inc.btn-grades')
+
     {{-- Create application button --}}
     @include('pages.users.inc.btn-create-application')
 

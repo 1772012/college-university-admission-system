@@ -30,10 +30,10 @@ class GradeService
     public static function insertGrades(Request $request, User $user): array
     {
         //  Access all request data
-        foreach ($request->all() as $data) {
+        foreach ($request->input('data') as $data) {
 
             //  Get subject
-            $subject = Subject::where('name', $data['subjects_name'])->first();
+            $subject = Subject::where('name', $data['subject_name'])->first();
 
             //  Update or create grade
             Grade::updateOrCreate(

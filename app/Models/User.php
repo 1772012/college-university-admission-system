@@ -174,4 +174,20 @@ class User extends Authenticatable implements JWTSubject
             ->select('users.*')
             ->where('role', 'user');
     }
+
+    /**
+     *  Get user grade
+     *
+     */
+    public function getGradeBySubject(string $subjectName, string $semester): Grade
+    {
+        $subject = Subject::where('name', $subjectName)->first();
+        return Grade::query()
+            ->where([
+                ['semester', $semester],
+                ['subjects_id', $subject->id],
+                ['users_id', $this->id]
+            ])
+            ->first() ?? new Grade();
+    }
 }
