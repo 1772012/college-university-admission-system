@@ -41,6 +41,7 @@ class ApplicationService
         return Application::query()
             ->with('user.userDetail', 'applicationStudyPrograms.studyProgram.faculty')
             ->where('users_id', $user->id)
+            ->get()
             ->toArray();
     }
 

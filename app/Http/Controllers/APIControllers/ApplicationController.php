@@ -55,19 +55,19 @@ class ApplicationController extends Controller
                 $applicationData = ApplicationService::searchApplicationByNRP($request);
 
                 //  Whether application is not exists
-                if ($applicationData) {
+                if (!$applicationData) {
                     return $this->responseError('No application data found.', 400);
                 }
 
                 //  Return success response
-                return $this->responseSuccess($applicationData, 'Successfully retrieve all application data.');
+                return $this->responseSuccess($applicationData, 'Successfully retrieve application data.');
             } else {
 
                 //  Search applications
                 $applicationData = ApplicationService::searchApplicationByUser($user);
 
                 //  Whether applications is not exists
-                if ($applicationData) {
+                if (sizeOf($applicationData) == 0) {
                     return $this->responseError('No applications data found.', 400);
                 }
 

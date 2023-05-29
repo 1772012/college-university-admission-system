@@ -9,7 +9,7 @@ Route::middleware('auth:api')->name('applications.')->prefix('/applications')->g
         Route::name('fetch')->get('/{user}/fetch', [ApplicationController::class, 'fetch']);
 
         //  Search
-        Route::name('search')->get('/search', [ApplicationController::class, 'search']);
+        Route::name('search')->get('/{user}/search', [ApplicationController::class, 'search']);
 
         //  Store
         Route::name('store')->post('/{user}/store', [ApplicationController::class, 'store']);
