@@ -52,6 +52,12 @@ class GradeService
             );
         }
 
+        //  Create notification
+        $user->notifications()->create([
+            'description'   => 'Anda telah mengisi nilai rapor.',
+            'is_read'       => false
+        ]);
+
         //  Return user grades
         return self::fetchGrades($user);
     }

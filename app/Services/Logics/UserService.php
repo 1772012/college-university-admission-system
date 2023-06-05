@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Traits\DatatableTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -93,6 +94,12 @@ class UserService
             'name'      => $request->input('name')
         ]);
 
+        //  Create notification
+        $user->notifications()->create([
+            'description'   => 'Anda telah membuat akun.',
+            'is_read'       => false
+        ]);
+
         //  Return user
         return $user->toArray();
     }
@@ -114,6 +121,12 @@ class UserService
         //  Update user detail
         $user->userDetail->update([
             'name'  => $request->input('name')
+        ]);
+
+        //  Create notification
+        $user->notifications()->create([
+            'description'   => 'Anda telah mengubah akun.',
+            'is_read'       => false
         ]);
 
         //  Return user

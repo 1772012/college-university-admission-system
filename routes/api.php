@@ -10,6 +10,9 @@ Route::name('api.')->group(function () {
     //  Route group users
     include __DIR__ . '/groups/api/users.php';
 
+    //  Route group notifications
+    include __DIR__ . '/groups/api/notifications.php';
+
     //  Route group applications
     include __DIR__ . '/groups/api/applications.php';
 

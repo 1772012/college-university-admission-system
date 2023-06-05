@@ -120,6 +120,12 @@ class ApplicationService
             'is_processed'      => false,
         ]);
 
+        //  Create notification
+        $user->notifications()->create([
+            'description'   => 'Anda telah melakukan pendaftaran pada program studi ' . $studyProgram->name . '.',
+            'is_read'       => false
+        ]);
+
         //  Return application
         return $application->toArray();
     }
@@ -134,6 +140,12 @@ class ApplicationService
     {
         //  Delete application
         $application->delete();
+
+        //  Create notification
+        $application->user->notifications()->create([
+            'description'   => 'Anda telah menghapus pendaftaran.',
+            'is_read'       => false
+        ]);
 
         //  Return application
         return $application->toArray();

@@ -50,11 +50,14 @@ class AuthService
     /**
      *  Auth get user data
      *
-     *  @return User
+     *  @return array
      */
-    public static function authUserProfile(): User
+    public static function authUserProfile(): array
     {
-        return auth()->guard('api')->user();
+        return [
+            'user'          => auth()->guard('api')->user(),
+            'userDetail'    => auth()->guard('api')->user()->userDetail
+        ];
     }
 
     /**
@@ -81,7 +84,7 @@ class AuthService
         return [
             'access_token' => $token,
             'token_type' => 'bearer',
-            // 'expires_in' => auth()->factory()->getTTL() * 60,
+            // 'expires_in' => auth()->user()->getTTL() * 60,
             'user' => auth()->guard('api')->user()
         ];
     }

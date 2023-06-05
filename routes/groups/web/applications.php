@@ -22,4 +22,10 @@ Route::middleware('auth')->name('applications.')->prefix('/applications')->group
 
         //  Get study programs
         Route::name('get-study-programs')->get('/get/study-programs', [ApplicationController::class, 'getStudyPrograms']);
+
+        //  Mail
+        Route::name('mail')->post('/{application}/mail', [ApplicationController::class, 'mail']);
+
+        //  Predict
+        Route::name('predict')->post('/{application}/predict', [ApplicationController::class, 'predict']);
     });
