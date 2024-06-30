@@ -19,10 +19,13 @@ jobs:
           MYSQL_PASSWORD: secret
           MYSQL_DATABASE: testdatabase
           MYSQL_ROOT_PASSWORD: root
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         ports:
           - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
@@ -46,18 +49,15 @@ jobs:
       
     - name: Verify MySQL connection
       run: |
-        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uuser -psecret -e "SHOW DATABASES"
-    # - name: Create Database
-    #   run: |
-    #     mkdir -p database
-    #     touch database/database.sqlite
+        mysql --host 127.0.0.1 --port 33306 -uuser -psecret -e "SHOW DATABASES"
     
     - name: Execute PHPUnit tests
       env:
         DB_CONNECTION: mysql
-        DB_DATABASE: testdatabase
+        DB_HOST: 127.0.0.1
         DB_PORT: 33306
-        DB_USER: root
+        DB_DATABASE: testdatabase
+        DB_USERNAME: user
         DB_PASSWORD: secret
       run: |
         php artisan migrate:fresh --seed
