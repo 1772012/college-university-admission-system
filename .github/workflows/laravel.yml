@@ -36,8 +36,8 @@ jobs:
     - name: Install dependencies
       run: |
         php --version
+        composer install
         composer update
-        # composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
         chmod -R 777 storage bootstrap/cache
 
     - name: Boot Laravel application
